@@ -22,14 +22,19 @@ namespace NovaData
             // Configuração de Usuario
             modelBuilder.Entity<UsuarioModel>(entity =>
             {
-                entity.ToTable("Usuarios");
+                entity.ToTable("NET_USUARIOS"); // ← PREFIXO ADICIONADO
                 entity.HasKey(u => u.Id);
                 
+                entity.Property(u => u.Id)
+                    .HasColumnName("ID");
+
                 entity.Property(u => u.Nome)
+                    .HasColumnName("NOME")
                     .IsRequired()
                     .HasMaxLength(120);
 
                 entity.Property(u => u.Email)
+                    .HasColumnName("EMAIL")
                     .IsRequired()
                     .HasMaxLength(150);
 
@@ -37,13 +42,16 @@ namespace NovaData
                     .IsUnique();
 
                 entity.Property(u => u.AreaInteresse)
+                    .HasColumnName("AREA_INTERESSE")
                     .HasMaxLength(80);
 
                 entity.Property(u => u.ObjetivoProfissional)
+                    .HasColumnName("OBJETIVO_PROFISSIONAL")
                     .HasMaxLength(200);
 
                 entity.Property(u => u.CriadoEm)
-                    .HasDefaultValueSql("GETDATE()");
+                    .HasColumnName("CRIADO_EM")
+                    .HasDefaultValueSql("SYSDATE");
 
                 // Relacionamento com Skills
                 entity.HasMany(u => u.Skills)
@@ -61,14 +69,22 @@ namespace NovaData
             // Configuração de Skill
             modelBuilder.Entity<SkillModel>(entity =>
             {
-                entity.ToTable("Skills");
+                entity.ToTable("NET_SKILLS"); // ← PREFIXO ADICIONADO
                 entity.HasKey(s => s.Id);
 
+                entity.Property(s => s.Id)
+                    .HasColumnName("ID");
+
+                entity.Property(s => s.UsuarioId)
+                    .HasColumnName("USUARIO_ID");
+
                 entity.Property(s => s.Nome)
+                    .HasColumnName("NOME")
                     .IsRequired()
                     .HasMaxLength(80);
 
                 entity.Property(s => s.Nivel)
+                    .HasColumnName("NIVEL")
                     .IsRequired();
 
                 entity.HasIndex(s => new { s.UsuarioId, s.Nome })
@@ -78,43 +94,60 @@ namespace NovaData
             // Configuração de Recomendação
             modelBuilder.Entity<RecomendacaoModel>(entity =>
             {
-                entity.ToTable("Recomendacoes");
+                entity.ToTable("NET_RECOMENDACOES"); // ← PREFIXO ADICIONADO
                 entity.HasKey(r => r.Id);
 
+                entity.Property(r => r.Id)
+                    .HasColumnName("ID");
+
+                entity.Property(r => r.UsuarioId)
+                    .HasColumnName("USUARIO_ID");
+
                 entity.Property(r => r.Titulo)
+                    .HasColumnName("TITULO")
                     .IsRequired()
                     .HasMaxLength(120);
 
                 entity.Property(r => r.Descricao)
+                    .HasColumnName("DESCRICAO")
                     .IsRequired()
                     .HasMaxLength(500);
 
                 entity.Property(r => r.CriadaEm)
-                    .HasDefaultValueSql("GETDATE()");
+                    .HasColumnName("CRIADA_EM")
+                    .HasDefaultValueSql("SYSDATE");
             });
 
             // Configuração de Trilha
             modelBuilder.Entity<TrilhaModel>(entity =>
             {
-                entity.ToTable("Trilhas");
+                entity.ToTable("NET_TRILHAS"); // ← PREFIXO ADICIONADO
                 entity.HasKey(t => t.Id);
 
+                entity.Property(t => t.Id)
+                    .HasColumnName("ID");
+
                 entity.Property(t => t.AreaInteresse)
+                    .HasColumnName("AREA_INTERESSE")
                     .IsRequired()
                     .HasMaxLength(80);
 
                 entity.Property(t => t.SkillRelacionada)
+                    .HasColumnName("SKILL_RELACIONADA")
                     .IsRequired()
                     .HasMaxLength(80);
 
                 entity.Property(t => t.NivelMinimo)
+                    .HasColumnName("NIVEL_MINIMO")
                     .IsRequired();
 
                 entity.Property(t => t.TituloRecomendacao)
+                    .HasColumnName("TITULO_RECOMENDACAO")
                     .IsRequired()
                     .HasMaxLength(120);
 
                 entity.Property(t => t.DescricaoRecomendacao)
+                    .HasColumnName("DESCRICAO_RECOMENDACAO")
                     .IsRequired()
                     .HasMaxLength(500);
 

@@ -11,12 +11,12 @@ namespace NovaModel
 
         [Required]
         [MaxLength(80)]
-        public string Nome { get; set; }
+        public string Nome { get; set; } = string.Empty;
 
         [Range(1, 5)]
         public int Nivel { get; set; }
 
         // Relacionamento
-        public UsuarioModel Usuario { get; set; }
+        public UsuarioModel Usuario { get; set; } = null!;
     }
 }

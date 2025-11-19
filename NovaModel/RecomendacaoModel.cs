@@ -12,15 +12,15 @@ namespace NovaModel
 
         [Required]
         [MaxLength(120)]
-        public string Titulo { get; set; }
+        public string Titulo { get; set; } = string.Empty;
 
         [Required]
         [MaxLength(500)]
-        public string Descricao { get; set; }
+        public string Descricao { get; set; } = string.Empty;
 
         public DateTime CriadaEm { get; set; } = DateTime.Now;
 
         // Relacionamento
-        public UsuarioModel Usuario { get; set; }
+        public UsuarioModel Usuario { get; set; } = null!;
     }
 }

@@ -10,18 +10,18 @@ namespace NovaModel
 
         [Required]
         [MaxLength(120)]
-        public string Nome { get; set; }
+        public string Nome { get; set; } = string.Empty;
 
         [Required]
         [EmailAddress]
         [MaxLength(150)]
-        public string Email { get; set; }
+        public string Email { get; set; } = string.Empty;
 
         [MaxLength(80)]
-        public string AreaInteresse { get; set; }
+        public string? AreaInteresse { get; set; }
 
         [MaxLength(200)]
-        public string ObjetivoProfissional { get; set; }
+        public string? ObjetivoProfissional { get; set; }
 
         public DateTime CriadoEm { get; set; } = DateTime.Now;
 

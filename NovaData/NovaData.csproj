@@ -12,15 +12,10 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+    <PackageReference Include="Oracle.EntityFrameworkCore" Version="9.23.60" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NovaBusiness\NovaBusiness.csproj" />
     <ProjectReference Include="..\NovaModel\NovaModel.csproj" />
   </ItemGroup>
 

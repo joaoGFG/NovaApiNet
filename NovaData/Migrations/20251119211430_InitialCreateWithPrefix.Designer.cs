@@ -2,18 +2,18 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NovaData;
+using Oracle.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
 namespace NovaData.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20251119175656_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20251119211430_InitialCreateWithPrefix")]
+    partial class InitialCreateWithPrefix
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,145 +23,164 @@ namespace NovaData.Migrations
                 .HasAnnotation("ProductVersion", "9.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+            OracleModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("NovaModel.RecomendacaoModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("NUMBER(10)")
+                        .HasColumnName("ID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    OraclePropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CriadaEm")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("GETDATE()");
+                        .HasColumnType("TIMESTAMP(7)")
+                        .HasColumnName("CRIADA_EM")
+                        .HasDefaultValueSql("SYSDATE");
 
                     b.Property<string>("Descricao")
                         .IsRequired()
                         .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasColumnType("NVARCHAR2(500)")
+                        .HasColumnName("DESCRICAO");
 
                     b.Property<string>("Titulo")
                         .IsRequired()
                         .HasMaxLength(120)
-                        .HasColumnType("nvarchar(120)");
+                        .HasColumnType("NVARCHAR2(120)")
+                        .HasColumnName("TITULO");
 
                     b.Property<int>("UsuarioId")
-                        .HasColumnType("int");
+                        .HasColumnType("NUMBER(10)")
+                        .HasColumnName("USUARIO_ID");
 
                     b.HasKey("Id");
 
                     b.HasIndex("UsuarioId");
 
-                    b.ToTable("Recomendacoes", (string)null);
+                    b.ToTable("NET_RECOMENDACOES", (string)null);
                 });
 
             modelBuilder.Entity("NovaModel.SkillModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("NUMBER(10)")
+                        .HasColumnName("ID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    OraclePropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("Nivel")
-                        .HasColumnType("int");
+                        .HasColumnType("NUMBER(10)")
+                        .HasColumnName("NIVEL");
 
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasMaxLength(80)
-                        .HasColumnType("nvarchar(80)");
+                        .HasColumnType("NVARCHAR2(80)")
+                        .HasColumnName("NOME");
 
                     b.Property<int>("UsuarioId")
-                        .HasColumnType("int");
+                        .HasColumnType("NUMBER(10)")
+                        .HasColumnName("USUARIO_ID");
 
                     b.HasKey("Id");
 
                     b.HasIndex("UsuarioId", "Nome")
                         .IsUnique();
 
-                    b.ToTable("Skills", (string)null);
+                    b.ToTable("NET_SKILLS", (string)null);
                 });
 
             modelBuilder.Entity("NovaModel.TrilhaModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("NUMBER(10)")
+                        .HasColumnName("ID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    OraclePropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("AreaInteresse")
                         .IsRequired()
                         .HasMaxLength(80)
-                        .HasColumnType("nvarchar(80)");
+                        .HasColumnType("NVARCHAR2(80)")
+                        .HasColumnName("AREA_INTERESSE");
 
                     b.Property<string>("DescricaoRecomendacao")
                         .IsRequired()
                         .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasColumnType("NVARCHAR2(500)")
+                        .HasColumnName("DESCRICAO_RECOMENDACAO");
 
                     b.Property<int>("NivelMinimo")
-                        .HasColumnType("int");
+                        .HasColumnType("NUMBER(10)")
+                        .HasColumnName("NIVEL_MINIMO");
 
                     b.Property<string>("SkillRelacionada")
                         .IsRequired()
                         .HasMaxLength(80)
-                        .HasColumnType("nvarchar(80)");
+                        .HasColumnType("NVARCHAR2(80)")
+                        .HasColumnName("SKILL_RELACIONADA");
 
                     b.Property<string>("TituloRecomendacao")
                         .IsRequired()
                         .HasMaxLength(120)
-                        .HasColumnType("nvarchar(120)");
+                        .HasColumnType("NVARCHAR2(120)")
+                        .HasColumnName("TITULO_RECOMENDACAO");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AreaInteresse", "SkillRelacionada", "NivelMinimo");
 
-                    b.ToTable("Trilhas", (string)null);
+                    b.ToTable("NET_TRILHAS", (string)null);
                 });
 
             modelBuilder.Entity("NovaModel.UsuarioModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("NUMBER(10)")
+                        .HasColumnName("ID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    OraclePropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("AreaInteresse")
-                        .IsRequired()
                         .HasMaxLength(80)
-                        .HasColumnType("nvarchar(80)");
+                        .HasColumnType("NVARCHAR2(80)")
+                        .HasColumnName("AREA_INTERESSE");
 
                     b.Property<DateTime>("CriadoEm")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("GETDATE()");
+                        .HasColumnType("TIMESTAMP(7)")
+                        .HasColumnName("CRIADO_EM")
+                        .HasDefaultValueSql("SYSDATE");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
+                        .HasColumnType("NVARCHAR2(150)")
+                        .HasColumnName("EMAIL");
 
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasMaxLength(120)
-                        .HasColumnType("nvarchar(120)");
+                        .HasColumnType("NVARCHAR2(120)")
+                        .HasColumnName("NOME");
 
                     b.Property<string>("ObjetivoProfissional")
-                        .IsRequired()
                         .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasColumnType("NVARCHAR2(200)")
+                        .HasColumnName("OBJETIVO_PROFISSIONAL");
 
                     b.HasKey("Id");
 
                     b.HasIndex("Email")
                         .IsUnique();
 
-                    b.ToTable("Usuarios", (string)null);
+                    b.ToTable("NET_USUARIOS", (string)null);
                 });
 
             modelBuilder.Entity("NovaModel.RecomendacaoModel", b =>

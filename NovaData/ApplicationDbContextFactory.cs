@@ -9,9 +9,9 @@ namespace NovaData
         {
             var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
             
-            // Connection string para design-time (migrations)
-            optionsBuilder.UseSqlServer(
-                "Server=(localdb)\\mssqllocaldb;Database=NovaCareerDB;Trusted_Connection=True;MultipleActiveResultSets=true"
+            // Connection string Oracle para design-time (migrations)
+            optionsBuilder.UseOracle(
+                "User Id=rm559863;Password=110306;Data Source=oracle.fiap.com.br:1521/ORCL;"
             );
 
             return new ApplicationDbContext(optionsBuilder.Options);
