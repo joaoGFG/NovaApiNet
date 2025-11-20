@@ -37,7 +37,7 @@ A solução segue uma estrutura baseada em **Clean Architecture simplificada**, 
 - **Tratamento de erros com ProblemDetails (RFC 7807)**  
 
 ---
-### ATENÇÃO!!
+# ATENÇÃO!!
 ## ⚙️ Configuração do Ambiente
 
 Antes de rodar o projeto, você PRECISA configurar sua conexão com o banco:
