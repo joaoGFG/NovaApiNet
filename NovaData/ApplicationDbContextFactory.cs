@@ -11,7 +11,7 @@ namespace NovaData
             
             // Connection string Oracle para design-time (migrations)
             optionsBuilder.UseOracle(
-                "User Id=rm559863;Password=110306;Data Source=oracle.fiap.com.br:1521/ORCL;"
+                "User Id=SEU_ID;Password=SUA_SENHA;Data Source=oracle.fiap.com.br:1521/ORCL;"
             );
 
             return new ApplicationDbContext(optionsBuilder.Options);
