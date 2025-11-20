@@ -37,10 +37,10 @@ A solução segue uma estrutura baseada em **Clean Architecture simplificada**, 
 - **Tratamento de erros com ProblemDetails (RFC 7807)**  
 
 ---
-
+### ATENÇÃO!!
 ## ⚙️ Configuração do Ambiente
 
-Antes de rodar o projeto, configure sua conexão com o banco:
+Antes de rodar o projeto, você PRECISA configurar sua conexão com o banco:
 
 ### 📄 `appsettings.json`
 
@@ -52,7 +52,7 @@ Antes de rodar o projeto, configure sua conexão com o banco:
 }
 ```
 
-> 🔐 **Atenção:** Nunca deixe credenciais no Git em ambiente real.
+> 🔐 **Atenção:** Se não, o projeto não funcionará.
 
 ---
 
