@@ -6,9 +6,16 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-// Configurar DbContext com Oracle
+// Configurar DbContext com Oracle (com compatibilidade FIAP)
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseOracle(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseOracle(
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        oracleOptions =>
+        {
+            oracleOptions.MinBatchSize(1);
+            oracleOptions.MaxBatchSize(1);
+        }
+    ));
 
 // Registrar serviços da camada Business
 builder.Services.AddScoped<UsuarioService>();
