@@ -84,7 +84,7 @@ dotnet run --project NovaUI
 
 A API estará disponível em:
 
-👉 **https://localhost:7283**
+👉 **https://localhost:7283/swagger**
 
 ---
 
