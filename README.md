@@ -7,7 +7,7 @@ API para gerenciamento de carreiras, trilhas de aprendizado, usuários e recomen
 
 A **Nova Career API** é uma API RESTful construída com **.NET 8**, seguindo boas práticas de arquitetura em camadas, separação de responsabilidades e documentação interativa via Swagger.  
 
-Este projeto faz parte da disciplina **Advanced Business Development with .NET** e representa a entrega final da sprint.
+Este projeto faz parte da disciplina **Advanced Business Development with .NET** e representa a entrega final da Global Solution.
 
 ---
 
@@ -47,7 +47,7 @@ Antes de rodar o projeto, configure sua conexão com o banco:
 ```json
 {
   "ConnectionStrings": {
-    "DefaultConnection": "User Id=rm559863;Password=SEU_PASSWORD;Data Source=oracle.fiap.com.br:1521/ORCL;"
+    "DefaultConnection": "User Id=SEU_ID;Password=SEU_PASSWORD;Data Source=oracle.fiap.com.br:1521/ORCL;"
   }
 }
 ```
@@ -185,17 +185,5 @@ curl -X GET "https://localhost:7283/api/Recomendacoes/usuario/1"
 
 ---
 
-## 📌 Check-list da Entrega
-
-- [x] Camadas estruturadas (Domain, Application, Infrastructure, Presentation)  
-- [x] Regras de domínio implementadas  
-- [x] CRUDs completos  
-- [x] Migrations Oracle aplicadas  
-- [x] Tratamento de erros padronizado  
-- [x] Documentação via Swagger  
-- [x] README completo  
-
----
-
 ## 👨‍💻 Desenvolvido por  
-**Seu Nome — RM[SeuRM]**
+**JoaoGFG**
